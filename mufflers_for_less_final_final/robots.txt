@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://www.mufflers4lesscleveland.com/sitemap.xml

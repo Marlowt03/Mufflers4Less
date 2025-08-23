@@ -1,0 +1,1148 @@
+/*
+ * Stylesheet for the new Mufflers For Less website.
+ *
+ * The goal of this design is to provide a clean, modern
+ * layout while maintaining a familiar structure for returning
+ * customers. Colours and typography are kept simple to
+ * highlight the photography and content provided by the
+ * client. The stylesheet includes responsive rules so the
+ * site looks good on mobile devices, tablets and desktops.
+ */
+
+/* CSS reset to normalise spacing and remove default margins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', Arial, Helvetica, sans-serif;
+  line-height: 1.5;
+  background-color: #f7f7f7;
+  color: #333;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Navigation bar */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background-color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar .logo img {
+  height: 60px;
+  width: auto;
+}
+
+.navbar nav ul {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+}
+
+.navbar nav ul li a {
+  font-weight: 600;
+  padding: 0.5rem;
+  transition: color 0.2s ease;
+}
+
+.navbar nav ul li a:hover {
+  color: #c0392b;
+}
+
+/* Add underline and colour for the current page's navigation link */
+.navbar nav ul li a.active {
+  color: #c0392b;
+  text-decoration: underline;
+}
+
+/* Generic button styling */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.75rem;
+  border-radius: 30px;
+  background-image: linear-gradient(135deg, #c0392b, #e74c3c);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.03em;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+/* Hero section */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 60vh;
+  min-height: 400px;
+  overflow: hidden;
+}
+
+.hero video,
+.hero img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Do not dim all hero videos by default; the home page overrides this where needed */
+}
+
+/* Show more of the memorial bench on the David Challenge hero */
+/* David Challenge hero: position the bench photo so the inscription and portrait are visible */
+/* David Challenge hero: zoom out and move the image up so David's face is clearly visible above the text */
+/* The cropping for the David Challenge hero is defined later with a single rule. */
+
+.hero .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Default overlay: semi‑transparent black for general hero sections */
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 1rem;
+}
+
+.hero .overlay h1 {
+  font-size: 2.8rem;
+  margin-bottom: 0.5rem;
+  /* Use plain white text for hero headlines by default. The home page overrides this style if needed. */
+  color: #ffffff;
+
+  /* Subtle shadow for hero headlines to improve legibility on busy backgrounds */
+  text-shadow: 0 3px 6px rgba(0, 0, 0, 0.6);
+}
+
+.hero .overlay p {
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin-bottom: 1.5rem;
+  /* Use plain white text for hero taglines. */
+  color: #ffffff;
+  /* Subtle shadow to improve legibility against varied backgrounds */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+/* Home page hero: darken video more and retain white text */
+.home-hero video {
+  /* Dim the video significantly so overlay text remains legible */
+  /* Dim the home page video further so text remains legible even on lighter scenes */
+  filter: brightness(0.4);
+}
+
+.home-hero .overlay {
+  /* Darker overlay for the home page hero */
+  background: rgba(0, 0, 0, 0.6);
+}
+
+/* Other hero overlays (About, Gallery, David Challenge, Contact) use a lighter overlay
+   so the photos remain more visible. This overrides the default 0.45 opacity. */
+.about-hero .overlay,
+.gallery-hero .overlay,
+.david-hero .overlay,
+.contact-hero .overlay {
+  background: rgba(0, 0, 0, 0.35);
+}
+
+/* Ensure the About Us hero matches the height of other hero sections */
+.about-hero {
+  /* Set the About hero to match the default hero height so it aligns with the other pages */
+  height: 60vh;
+  min-height: 400px;
+}
+
+/* Adjust cropping of the David Challenge hero: move the image up slightly to reveal more bench above the text */
+/* David Challenge hero: move the image up slightly so David's portrait is more visible above the heading */
+/* Slightly zoom out and raise the David Challenge hero image further so more of the bench and David’s name are visible */
+.david-hero img {
+  object-position: center 30%;
+}
+
+/* Specialised hero variations for different pages */
+/* Gallery hero: centre the car vertically so it sits mid‑frame rather than low */
+/* Gallery hero: shift crop upward so the car is more prominently centred */
+/* Gallery hero: move the image further down so the vehicle sits lower in frame.
+ * A higher percentage shifts the crop towards the bottom of the image.
+ */
+/* Gallery hero: move the image further down so the vehicle sits lower in frame.
+ * A higher percentage shifts the crop towards the bottom of the image.
+ */
+/* Gallery hero: position the car nicely within the frame. 60% centres the car while still showing the shop sign at the top. */
+.gallery-hero img {
+  object-position: center 70%;
+}
+
+/* Contact page hero: ensure the sign and cross are centred */
+.contact-hero img {
+  /* Shift downward further to reveal more of the yellow sign and cross */
+  object-position: center 30%;
+}
+
+/* Home contact header: similar to hero but smaller; includes its own overlay */
+.home-contact-header {
+  display: none;
+}
+.home-contact-header img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.home-contact-header .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Dark overlay for legibility on the sign background */
+  background: rgba(0,0,0,0.55);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem;
+}
+
+/* (Removed duplicate definition; the correct position is defined above) */
+
+/* Section styling */
+.section {
+  padding: 4rem 2rem;
+  /* soft neutral background to separate content sections */
+  background-color: #f7f7f7;
+}
+
+/* Callout styling: tighten spacing so there isn’t a large gap between the callout text
+   and the following gallery grid. The paragraph margins are removed and padding
+   reduced compared to the default section padding. */
+.callout {
+  padding: 1rem 2rem;
+}
+.callout p {
+  margin: 0;
+}
+
+/* Card utility class for white panels used across the site */
+.card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 2rem;
+}
+
+/* Custom styling for the about preview card */
+#about-preview {
+  margin-top: 4rem;
+}
+
+.section h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  color: #c0392b;
+}
+
+/* Services grid */
+/* Use CSS grid to present three columns on larger screens and automatically wrap on smaller devices.
+   This ensures the cards line up neatly and appear organised. */
+.services {
+  display: grid;
+  gap: 2rem;
+  justify-items: center;
+  /* Show three columns on desktop by default so six cards form two rows.  We override this
+     behaviour for smaller screens below. */
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* Force the services section to display exactly three columns on wide screens so the cards appear 2 × 3 rather than one long row */
+@media (min-width: 992px) {
+  .services {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* On medium screens, display two cards per row */
+@media (min-width: 768px) and (max-width: 991px) {
+  .services {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* On small screens, stack the services in a single column */
+@media (max-width: 767px) {
+  .services {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Service item cards: fixed width to create a more uniform grid
+ * across different screen sizes. Cards shrink down to fill available
+ * space on smaller screens. */
+.service-item {
+  background-color: #ffffff;
+  padding: 2rem 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  /* Ensure each card has the same minimum height so the grid aligns neatly */
+  min-height: 320px;
+  width: 100%;
+  max-width: 320px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-item img {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 0.75rem;
+}
+
+.service-item h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+  color: #c0392b;
+}
+
+.service-item p {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+/* Icon styling inside service items */
+/*
+ * Service icons are displayed inside a coloured circular badge.  The
+ * underlying SVG strokes are overridden to white so the icons are
+ * clearly visible against the red background.  The wrapper uses
+ * flexbox to centre the icon within the circle.
+ */
+.service-item .icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 0.75rem auto;
+  background-color: #c0392b;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.service-item .icon svg {
+  width: 32px;
+  height: 32px;
+}
+/* Override SVG stroke and fill colours for icons in service items */
+.service-item .icon svg path,
+.service-item .icon svg rect,
+.service-item .icon svg line,
+.service-item .icon svg circle {
+  stroke: #ffffff;
+  fill: none;
+}
+
+/* Dedicated image icon for service items */
+.service-icon {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 0.75rem;
+  object-fit: contain;
+  display: inline-block;
+}
+
+/* Hover effect for service items */
+.service-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Value cards ("What Drives Us") styling and hover effect */
+.values-grid .value-card {
+  background-color: #ffffff;
+  padding: 2rem 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.values-grid .value-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+.values-grid .value-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 0.75rem auto;
+  background-color: #c0392b;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.values-grid .value-icon i {
+  color: #ffffff;
+  font-size: 32px;
+}
+
+/* Parallax section: fixed background image with content overlay */
+.parallax {
+  position: relative;
+  background-image: url('assets/mechanic-sparks.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  height: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+}
+
+.parallax::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+}
+
+.parallax-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  padding: 1rem;
+}
+
+/* About section */
+.about-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .about-container {
+    flex-direction: row;
+  }
+}
+
+.about-container .about-text {
+  flex: 1 1 50%;
+}
+
+.about-container .about-images {
+  flex: 1 1 50%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.about-container .about-images img {
+  width: 100%;
+  max-width: 300px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Reviews section */
+.reviews-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.review-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 2rem 1.5rem;
+  /* Width of review cards is controlled by the reviews slider; avoid
+     setting flex-basis here so carousel widths can be overridden via
+     .reviews-slider styles. */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.review-card .stars {
+  /* Colour the stars gold and add spacing */
+  color: #f39c12;
+  margin-bottom: 0.75rem;
+  font-size: 1.3rem;
+  font-size: 1.2rem;
+}
+
+.review-card .review-text {
+  font-style: italic;
+  margin-bottom: 0.75rem;
+  color: #555;
+}
+
+.review-card .review-author {
+  font-weight: bold;
+  color: #333;
+}
+
+/* Gallery grid */
+.gallery-grid {
+  display: grid;
+  /* Fix the gallery grid to three columns to mirror the original layout */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  /* Remove the extra space above the gallery images.  Keep bottom padding for visual breathing room */
+  padding: 0 0 2rem 0;
+}
+
+.gallery-grid img {
+  width: 100%;
+  /* Increase the height of gallery thumbnails to better showcase the cars */
+  height: 320px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.gallery-grid img:hover {
+  transform: scale(1.05);
+}
+
+/* Hover caption on gallery items */
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+}
+.gallery-item::after {
+  content: attr(data-caption);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 0.5rem;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  font-size: 0.85rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.gallery-item:hover::after {
+  opacity: 1;
+}
+
+/* About preview (home page) */
+.about-preview-grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.about-preview-text {
+  flex: 1 1 50%;
+  max-width: 600px;
+}
+.about-preview-text h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #c0392b;
+}
+.about-preview-text p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
+  color: #555;
+}
+.about-preview-images {
+  flex: 1 1 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+.about-preview-images img {
+  width: 100%;
+  /* Slightly taller images to better complement the adjoining text */
+  height: 220px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* On larger screens, display the about preview images side-by-side to the right of the text */
+@media (min-width: 992px) {
+  .about-preview-images {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .about-preview-images img {
+    width: 48%;
+    height: 240px;
+  }
+}
+
+/* Center the shop sign within its frame on the home page preview */
+.about-preview-images img.sign-img {
+  /* Centre the sign horizontally within its frame.  Setting both axes to centre ensures
+     the yellow sign isn't cropped off on either side. */
+  object-position: center;
+}
+
+/* Style for the soapbox car image in the about preview to ensure the full vehicle is visible */
+.about-preview-images img.car-img {
+  object-position: center;
+}
+@media (max-width: 768px) {
+  .about-preview-grid {
+    flex-direction: column;
+  }
+  .about-preview-text, .about-preview-images {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+  .about-preview-images img {
+    height: 220px;
+  }
+}
+
+/* On larger screens, prevent the about preview from wrapping so the images sit beside the text */
+@media (min-width: 992px) {
+  .about-preview-grid {
+    flex-wrap: nowrap;
+  }
+}
+
+/* Reviews carousel */
+/* Reviews carousel (home page) */
+.reviews-section {
+  background-color: #fafafa;
+  padding: 4rem 2rem;
+  overflow: hidden;
+}
+/* Heading for reviews section */
+.reviews-section h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #c0392b;
+}
+
+/* New reviews slider styles */
+.reviews-slider {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  overflow: hidden;
+
+  /* Set a generous minimum height so navigation arrows remain vertically centred
+     regardless of the varying length of review text */
+  min-height: 420px;
+}
+.review-slide {
+  display: none;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+  /* Give each slide a fixed height so the container doesn’t shrink when switching slides */
+  min-height: 360px;
+  height: 360px;
+}
+.review-slide.active {
+  display: block;
+}
+.review-slide .stars {
+  color: #f39c12;
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+.review-slide h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+.review-slide p {
+  font-style: italic;
+  color: #555;
+  line-height: 1.5;
+}
+.reviews-slider .review-prev,
+.reviews-slider .review-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: #c0392b;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 0 0.75rem;
+  z-index: 10;
+  user-select: none;
+  transition: color 0.2s ease;
+}
+.reviews-slider .review-prev:hover,
+.reviews-slider .review-next:hover {
+  color: #e74c3c;
+}
+.reviews-slider .review-prev {
+  left: 0;
+}
+.reviews-slider .review-next {
+  right: 0;
+}
+
+/* List styling for David Challenge values */
+.challenge-values {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem 0;
+  padding: 0;
+}
+
+.challenge-values li {
+  background-color: #ffffff;
+  color: #c0392b;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: 600;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Style the call‑to‑action link to encourage navigation between pages */
+.callout a {
+  color: #c0392b;
+  text-decoration: underline;
+}
+.callout a:hover {
+  color: #e74c3c;
+}
+
+/* Lightbox modal */
+.lightbox {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.lightbox-prev,
+.lightbox-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #f0f0f0;
+  font-size: 3rem;
+  padding: 0 0.75rem;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.2s ease;
+}
+.lightbox-prev { left: 10px; }
+.lightbox-next { right: 10px; }
+.lightbox-prev:hover,
+.lightbox-next:hover { color: #ffffff; }
+
+/* Close (X) button for the lightbox */
+.lightbox-close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  color: #f0f0f0;
+  font-size: 2.5rem;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.2s ease;
+  z-index: 2100;
+}
+.lightbox-close:hover {
+  color: #ffffff;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 8px;
+}
+
+/* Lightbox content wrapper with caption */
+.lightbox-content {
+  text-align: center;
+}
+
+/* Caption styling for lightbox */
+#lightbox-caption {
+  color: #f0f0f0;
+  margin-top: 1rem;
+  font-size: 1rem;
+  max-width: 90%;
+  line-height: 1.4;
+}
+
+.lightbox:target {
+  display: flex;
+}
+
+/* Contact form */
+.contact-container {
+  max-width: 700px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  padding: 3rem 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Style callout links so they are underlined and match the brand colour */
+.callout a {
+  text-decoration: underline;
+  color: #c0392b;
+}
+
+.contact-container form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.contact-container form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.contact-container form input,
+.contact-container form textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+.contact-container form textarea {
+  min-height: 150px;
+  grid-column: span 2;
+}
+
+/* Home page “Get In Touch” section */
+.home-contact {
+  position: relative;
+  padding: 5rem 2rem;
+  /* Use a parallax background so the page scrolls over the photo
+     (the same exterior image used in the hero).  The fixed
+     attachment keeps the photo anchored while content scrolls. */
+  background-image: url('assets/img_8958.jpg');
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+/* Style the container within the contact section to stand off
+   from the parallax background.  It uses a semi‑opaque white
+   backdrop and shadow for readability. */
+.home-contact .contact-container {
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  max-width: 800px;
+  margin: 0 auto;
+}
+.home-contact h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #c0392b;
+}
+.home-contact p {
+  text-align: center;
+}
+
+.contact-container form .full-width {
+  grid-column: span 2;
+}
+
+/* Footer */
+.footer {
+  background-color: #1d1d1d;
+  color: #fff;
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.footer p {
+  margin-bottom: 0.5rem;
+}
+
+.footer a {
+  color: #c0392b;
+  text-decoration: underline;
+}
+
+/*
+ * About Page: hero section, intro and values.
+ * These styles organise the about content into modern, digestible
+ * sections similar to marlow.media’s layout.  The intro uses a
+ * two‑column layout with imagery, while the values grid presents
+ * the company’s core principles in individual cards.
+ */
+.about-hero {
+  position: relative;
+  width: 100%;
+  /* Keep the hero consistent with other pages */
+  height: 60vh;
+  min-height: 400px;
+  overflow: hidden;
+}
+
+.about-hero img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Show a bit more of the scene by shifting the crop down
+     (closer to centre) so viewers can see more of the car and surroundings */
+  /* Show more of the hero image by shifting the crop down.  Moving closer to
+     the centre reveals more of the soapbox car and surroundings */
+  /* Zoom out a little more so the full soapbox car is visible */
+  object-position: center 50%;
+}
+
+.about-hero .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.45);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem;
+}
+.about-hero .overlay h1 {
+  font-size: 2.6rem;
+  margin-bottom: 0.5rem;
+}
+.about-hero .overlay p {
+  font-size: 1.2rem;
+  max-width: 700px;
+}
+
+.about-intro {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  margin: 3rem auto;
+  max-width: 1200px;
+  padding: 0 1rem;
+}
+
+@media (min-width: 768px) {
+  .about-intro {
+    flex-direction: row;
+  }
+}
+
+.about-intro .intro-text {
+  flex: 1 1 50%;
+}
+.about-intro .intro-text h2 {
+  font-size: 2rem;
+  color: #c0392b;
+  margin-bottom: 1rem;
+}
+.about-intro .intro-text p {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 1rem;
+}
+.about-intro .intro-images {
+  flex: 1 1 50%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+.about-intro .intro-images img {
+  width: 100%;
+  max-width: 300px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.core-values {
+  background-color: #f7f7f7;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+.core-values h2 {
+  font-size: 2rem;
+  color: #c0392b;
+  margin-bottom: 2rem;
+}
+.values-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.value-card {
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  padding: 2rem;
+}
+.value-icon {
+  /* Style the icon similar to service icons: coloured circular badge */
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 0.75rem auto;
+  background-color: #c0392b;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 2rem;
+}
+.value-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: #c0392b;
+}
+.value-card p {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+/* Reviews carousel styles */
+.reviews-wrapper {
+  overflow: hidden;
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+}
+.reviews-slider {
+  display: flex;
+  transition: transform 0.6s ease;
+}
+/* Ensure review cards in slider have consistent width */
+.reviews-slider .review-card {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+@media (min-width: 768px) {
+  .reviews-slider .review-card {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+@media (min-width: 1024px) {
+  .reviews-slider .review-card {
+    flex: 0 0 33.3333%;
+    max-width: 33.3333%;
+  }
+}
+/* Adjust review card margin within slider */
+.reviews-slider .review-card {
+  padding: 2rem 1.5rem;
+  box-sizing: border-box;
+}
+
+/* David Challenge carousel */
+.david-carousel {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.david-carousel .main-image {
+  max-width: 600px;
+  width: 100%;
+  margin-bottom: 1rem;
+  position: relative;
+}
+.david-carousel .main-image img {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+.david-carousel .thumbnails {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.david-carousel .thumbnails img {
+  width: 80px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 4px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.david-carousel .thumbnails img.active {
+  opacity: 1;
+  transform: scale(1.05);
+}
+.david-carousel .thumbnails img:hover {
+  opacity: 1;
+}
